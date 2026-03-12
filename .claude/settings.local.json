@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node --version && npm --version)",
+      "Bash(npx @nestjs/cli new backend --package-manager npm --skip-git 2>&1)",
+      "Bash(cd backend:*)",
+      "Bash(npm install:*)",
+      "Bash(cd /c/Project/MyTempProject/English && npx create-next-app@latest frontend --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --no-git 2>&1 | tail -20)",
+      "Bash(echo \"No\" | npx create-next-app@latest frontend --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --no-git 2>&1 | tail -20)",
+      "Bash(ls \"C:\\\\Project\\\\MyTempProject\\\\English\\\\frontend\\\\src\\\\app\\\\\" 2>/dev/null || echo \"Directory does not exist\")",
+      "Bash(npm run:*)",
+      "Bash(npx tsc:*)",
+      "Read(//c/Users/user/.claude//**)",
+      "Read(//c/Users/user/.claude/projects//**)",
+      "Bash(ls /c/Project/MyTempProject/English/frontend/src/app/child/lists/\\\\[listId\\\\]/)",
+      "Bash(ls /c/Project/MyTempProject/English/frontend/src/app/child/lists/\\\\[listId\\\\]/test/)",
+      "Bash(npm list:*)",
+      "Bash(netstat -ano | grep :4000 | grep LISTENING)",
+      "Bash(cmd //c \"taskkill /PID 45764 /F\")"
+    ]
+  }
+}

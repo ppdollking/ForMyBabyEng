@@ -1,0 +1,8 @@
+node_modules/
+dist/
+data/
+.env
+
+# 실제 키가 있는 환경 파일은 git에서 제외
+src/config/env/.local.env
+src/config/env/.live.env
