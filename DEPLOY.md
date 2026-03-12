@@ -25,6 +25,9 @@
 # 패키지 업데이트
 sudo dnf update -y
 
+# git 설치
+sudo dnf install -y git
+
 # Node.js 20 LTS 설치 (nvm 사용)
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
 source ~/.bashrc

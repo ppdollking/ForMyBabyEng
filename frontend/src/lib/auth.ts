@@ -1,6 +1,6 @@
 export interface UserInfo {
   id: number;
-  email: string;
+  email?: string;
   nickname: string;
   role: 'parent' | 'child';
   points?: number;
