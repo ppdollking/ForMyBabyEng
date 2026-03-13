@@ -10,7 +10,7 @@ import { userApi, testApi } from '@/lib/api';
 interface Child {
   id: number;
   nickname: string;
-  email: string;
+  loginId: string;
   points: number;
 }
 
@@ -84,7 +84,7 @@ export default function ParentDashboardPage() {
                   <div className="flex items-start justify-between">
                     <div>
                       <h2 className="text-xl font-bold text-gray-800">{child.nickname}</h2>
-                      <p className="text-gray-400 text-sm">{child.email}</p>
+                      <p className="text-gray-400 text-sm">@{child.loginId}</p>
                     </div>
                     <span className="bg-yellow-100 text-yellow-700 font-bold px-3 py-1 rounded-full text-sm">
                       ⭐ {child.points}점

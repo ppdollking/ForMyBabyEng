@@ -52,11 +52,21 @@ export const vocabApi = {
   getLists: () => api.get('/vocabulary/lists'),
   getList: (listId: number) => api.get(`/vocabulary/lists/${listId}`),
   deleteList: (listId: number) => api.delete(`/vocabulary/lists/${listId}`),
+  createChildList: (childId: number, data: { Name: string }) => api.post(`/vocabulary/children/${childId}/lists`, data),
+  getChildLists: (childId: number) => api.get(`/vocabulary/children/${childId}/lists`),
+  getChildList: (childId: number, listId: number) => api.get(`/vocabulary/children/${childId}/lists/${listId}`),
+  deleteChildList: (childId: number, listId: number) => api.delete(`/vocabulary/children/${childId}/lists/${listId}`),
   addWord: (listId: number, data: { English: string; Meaning: string; AudioUrl?: string; Phonetic?: string }) =>
     api.post(`/vocabulary/lists/${listId}/words`, data),
+  addChildWord: (childId: number, listId: number, data: { English: string; Meaning: string; AudioUrl?: string; Phonetic?: string }) =>
+    api.post(`/vocabulary/children/${childId}/lists/${listId}/words`, data),
   updateWord: (listId: number, wordId: number, data: { English?: string; Meaning?: string }) =>
     api.put(`/vocabulary/lists/${listId}/words/${wordId}`, data),
+  updateChildWord: (childId: number, listId: number, wordId: number, data: { English?: string; Meaning?: string }) =>
+    api.put(`/vocabulary/children/${childId}/lists/${listId}/words/${wordId}`, data),
   deleteWord: (listId: number, wordId: number) => api.delete(`/vocabulary/lists/${listId}/words/${wordId}`),
+  deleteChildWord: (childId: number, listId: number, wordId: number) =>
+    api.delete(`/vocabulary/children/${childId}/lists/${listId}/words/${wordId}`),
 };
 
 // Dictionary

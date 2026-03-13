@@ -28,6 +28,7 @@ export const ERR_INVALID_PASSWORD = 100003;
 export const ERR_INVALID_ROLE = 100004;
 export const ERR_LIST_NOT_FOUND = 100010;
 export const ERR_WORD_NOT_FOUND = 100011;
+export const ERR_WORD_DUPLICATE = 100012;
 export const ERR_TEST_NOT_FOUND = 100020;
 export const ERR_NOT_CHILD_OF_PARENT = 100030;
 

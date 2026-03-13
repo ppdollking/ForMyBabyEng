@@ -18,6 +18,39 @@ export class WordRepository {
     return this.repo.find({ where: { listId }, order: { createdAt: 'ASC' } });
   }
 
+  async existsInListByEnglish(listId: number, english: string, excludeWordId?: number): Promise<boolean> {
+    const query = this.repo
+      .createQueryBuilder('word')
+      .where('word.listId = :listId', { listId })
+      .andWhere('LOWER(TRIM(word.english)) = :english', { english: english.trim().toLowerCase() });
+
+    if (excludeWordId) {
+      query.andWhere('word.id != :excludeWordId', { excludeWordId });
+    }
+
+    return (await query.getCount()) > 0;
+  }
+
+  async getRegistrationCountsByChildId(childId: number, englishWords: string[]): Promise<Record<string, number>> {
+    const normalizedWords = [...new Set(englishWords.map((word) => word.trim().toLowerCase()).filter(Boolean))];
+    if (normalizedWords.length === 0) return {};
+
+    const rows = await this.repo
+      .createQueryBuilder('word')
+      .innerJoin('word.list', 'list')
+      .select('LOWER(TRIM(word.english))', 'english')
+      .addSelect('COUNT(*)', 'count')
+      .where('list.childId = :childId', { childId })
+      .andWhere('LOWER(TRIM(word.english)) IN (:...normalizedWords)', { normalizedWords })
+      .groupBy('LOWER(TRIM(word.english))')
+      .getRawMany<{ english: string; count: string }>();
+
+    return rows.reduce<Record<string, number>>((acc, row) => {
+      acc[row.english] = Number(row.count);
+      return acc;
+    }, {});
+  }
+
   async insertWord(data: Partial<WordEntity>): Promise<WordEntity> {
     return this.repo.save(this.repo.create(data));
   }

@@ -8,6 +8,7 @@ interface Word {
   meaning: string;
   phonetic?: string;
   audioUrl?: string;
+  registrationCount?: number;
 }
 
 interface Props {
@@ -29,6 +30,9 @@ export default function WordCard({ word, index }: Props) {
         <p className="text-lg font-bold text-gray-800">{word.english}</p>
         {word.phonetic && <p className="text-xs text-gray-400">{word.phonetic}</p>}
         <p className="text-gray-500 mt-1">{word.meaning}</p>
+        {(word.registrationCount ?? 1) > 1 && (
+          <p className="text-xs text-amber-600 mt-2">다른 단어장 포함 총 {word.registrationCount}회 등록</p>
+        )}
       </div>
       <button
         onClick={() => speak(word.english, word.audioUrl)}
